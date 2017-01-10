@@ -1,0 +1,3 @@
+# DisneyReward
+
+The Arduino listens to two ports, one port will provide a single button press and the other port will provide a continuous change of a TTL signal (to high or low, parameter in script). This input will be forwarded as TTL pulse of defined duration to a solenoid controller in order to open it and provide reward. The button press will be translated to a deined duration (fixed parameter) whereas the continuous pulse from the computer will be forwarded as it is. 
