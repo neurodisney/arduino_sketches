@@ -8,8 +8,8 @@ int eyeY  = 4;
 
 // define noise
 int noiselevel = 5; // level of shot noise on signal
-int noiseX = 0;      // initialize noise
-int noiseY = 0;
+int noiseX     = 0; // initialize noisy signal
+int noiseY     = 0;
 
 // for simplicity use 9 point calibration with identical scale for X and Y
 // analogWrite values range from 0 to 255
@@ -21,7 +21,7 @@ int cY = EyePos[1];
 // specify range of fixation times
 int MinFix             = 200;
 int MaxFix             = 1000;
-unsigned long FixEnd   =    0;
+unsigned long FixEnd   =    0;  // timer to end current fixation
 
 // set uo
 void setup()
@@ -35,8 +35,8 @@ void setup()
 void loop()
 { 
     // get current noise
-    noiseX = random(cX - noiselevel, cX + noiselevel);
-    noiseY = random(cY - noiselevel, cY + noiselevel);
+    noiseX = round(random(cX - noiselevel, cX + noiselevel));
+    noiseY = round(random(cY - noiselevel, cY + noiselevel));
   
     // write current 'eye position'
     analogWrite(eyeX, noiseX);     
