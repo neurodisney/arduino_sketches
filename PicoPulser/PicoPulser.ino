@@ -16,11 +16,11 @@
 
 // pulse train parameters
 const int            Npulse   = 10;    // number of pulses in pulse train                 
-const unsigned long  PulseDur = 2;     // duration of pulse [us]                             
-const unsigned long  GapDur   = 2000;  // gap between two subsequent pulses [us]  
+const unsigned long  PulseDur = 2;     // duration of pulse [ms]                             
+const unsigned long  GapDur   = 98;  // gap between two subsequent pulses [ms]  
 
 const int            Ntrain   = 4;     // number of pulse trains                                        
-const unsigned long  TrainGap = 6000;  // delay between two subsequent pulse trains [s]                                        
+const unsigned long  TrainGap = 20000;  // delay between two subsequent pulse trains [ms]                                        
 
 // #define digitalWriteFast(_pin_, _state_) ( _pin_ < 8 ? (_state_ ?  PORTD |= 1 << _pin_ : PORTD &= ~(1 << _pin_ )) : (_state_ ?  PORTB |= 1 << (_pin_ -8) : PORTB &= ~(1 << (_pin_ -8)  )))
 // the macro sets or clears the appropriate bit in port D if the pin is less than 8 or port B if between 8 and 13
