@@ -7,13 +7,13 @@ int eyeX =  8;
 int eyeY  = 4;    
 
 // define noise
-int noiselevel = 5; // level of shot noise on signal
+int noiselevel = 10; // level of shot noise on signal
 int noiseX     = 0; // initialize noisy signal
 int noiseY     = 0;
 
 // for simplicity use 9 point calibration with identical scale for X and Y
 // analogWrite values range from 0 to 255
-int EyePos[] = {50, 125, 200};  
+int EyePos[] = {25, 125, 225};  
 
 int cX = EyePos[1];
 int cY = EyePos[1];
@@ -41,6 +41,8 @@ void loop()
     // write current 'eye position'
     analogWrite(eyeX, noiseX);     
     analogWrite(eyeY, noiseY);  
+    
+    delay(1);
     
     if (millis() > FixEnd) {
     // time for a 'saccade'

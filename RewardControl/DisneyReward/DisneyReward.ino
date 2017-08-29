@@ -14,9 +14,9 @@ const int output_Pin        =  12; // Pin 12 output pin for jucier [WHITE]
 
 const int DIO_inithigh      =   0; // set to one if the computer line changes from high to low for the reward
 
-unsigned long rew_dur       = 100; // Juicer default run time in mSecs
+unsigned long rew_dur       = 40000; // Juicer default run time in mSecs
 unsigned long debounce_time =  60; // button debounce time (make sure it was an intended button press)
-unsigned long dead_time     = 100; // dead time after button press
+unsigned long dead_time     = 10; // dead time after button press
 
 // Setup board with desired configuration
 void setup()
