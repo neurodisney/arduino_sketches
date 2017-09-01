@@ -12,7 +12,10 @@
 
 // Pin configuration
 #define PulsePort  10    // pulse train will be generated on this port
-#define ListenPort  2    // input pulse to trigger pulse train expected on this port
+#define ListenPort 12    // input pulse to trigger pulse train expected on this port
+
+#define LEDseries   4    // set line for LED to indicate that it is currently active with a pulse train
+#define LEDactive   2    // set line for LED to indicate that arduino is active sending a series of pulse trains
 
 ///////////////#################################################################///////////////////
 // pulse train parameters
@@ -29,18 +32,22 @@ const unsigned long  TrainGap = 60000;  // delay between two subsequent pulse tr
 void setup() {  
   pinMode(ListenPort, INPUT);   // set ListenPort pin as input
   pinMode(PulsePort, OUTPUT);   // set PulsePort  pin as output
+  pinMode(LEDseries, OUTPUT);   // set LEDseries  pin as output
+  pinMode(LEDactive, OUTPUT);   // set LEDactive  pin as output
 }
 
 // main loop
 void loop() {
-    digitalWrite(PulsePort, LOW); // keep pulser low per default
+    digitalWriteFast(PulsePort, LOW); // keep pulser low per default
 
-    if (digitalRead(ListenPort) == HIGH) { // TTL detected, trigger pulse series (assumes that normal state is low)
+    if (digitalReadFast(ListenPort) == HIGH) { // TTL detected, trigger pulse series (assumes that normal state is low)
         
         // loop over number of pulse trains
+        digitalWriteFast(LEDactive, HIGH); 
         for (int S = 1; S <= Ntrain; S++) {  
        
             // loop over number of pulses 
+            digitalWriteFast(LEDseries, HIGH); 
             for (int P = 1; P <= Npulse; P++) {  
          
                 // generate a rect pulse
@@ -53,10 +60,12 @@ void loop() {
                     delay(GapDur); 
                 }
             }
-         
+            digitalWriteFast(LEDseries, LOW); 
+
             // wait before next pulse train gets generated
             if ( S < Ntrain ) { delay(TrainGap); }
         }
+        digitalWriteFast(LEDactive, LOW); 
     }
 }
 
